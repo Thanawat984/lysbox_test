@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+:root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 270 85% 60%; /* Brand violet (dashboard) */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 230 35% 96%;
+    --secondary-foreground: 232 47% 14%;
+
+    --muted: 230 30% 97%;
+    --muted-foreground: 232 18% 45%;
+
+    --accent: 292 80% 60%; /* Brand purple-pink accent */
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 232 28% 90%;
+    --input: 232 28% 90%;
+    --ring: 232 70% 50%;
+
+    --radius: 1.25rem;
+
+    --sidebar-background: 230 20% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 232 60% 18%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 232 35% 95.9%;
+    --sidebar-accent-foreground: 232 60% 18%;
+    --sidebar-border: 230 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* Extras: gradients & shadows */
+    --primary-glow: 290 85% 65%;
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 100%), hsl(230 40% 98%));
+    --gradient-number: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --shadow-elev: 0 10px 30px -10px hsl(var(--primary) / 0.25);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.35);
+  }
+
+  .dark {
+    --background: 232 50% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 232 50% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 232 50% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 270 85% 65%;
+    --primary-foreground: 232 60% 12%;
+    --primary-glow: 292 85% 70%;
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--card)));
+ 
+    --secondary: 232 32% 18%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 232 32% 18%;
+    --muted-foreground: 215 20% 70%;
+
+    --accent: 292 75% 65%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 232 32% 18%;
+    --input: 232 32% 18%;
+    --ring: 232 70% 50%;
+    --sidebar-background: 232 50% 10%;
+    --sidebar-foreground: 230 15% 92%;
+    --sidebar-primary: 258 90% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 232 28% 16%;
+    --sidebar-accent-foreground: 230 15% 92%;
+    --sidebar-border: 232 28% 16%;
+    --sidebar-ring: 232 70% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Signature interaction: soft spotlight following cursor */
+  .interactive-spotlight {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(600px circle at var(--x,50%) var(--y,20%), hsl(270 95% 60% / 0.15), transparent 40%);
+    transition: background 0.15s ease;
+  }
+  .bg-gradient-subtle { background: var(--gradient-subtle); }
+  .bg-gradient-primary { background: var(--gradient-primary); }
+  .shadow-glow { box-shadow: var(--shadow-glow); }
+  .text-gradient { background: var(--gradient-number); -webkit-background-clip: text; background-clip: text; color: transparent; }
+}
+
+
+/* Spotlight JS hook */
+:root { --x: 50%; --y: 20%; }
+body:hover .interactive-spotlight { background: radial-gradient(600px circle at var(--x) var(--y), hsl(270 95% 60% / 0.18), transparent 40%); }

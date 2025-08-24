@@ -1,0 +1,4 @@
+project_id = "lwszqmnbgvwklgsyfdrz"
+
+[functions.s3-presign]
+verify_jwt = false
