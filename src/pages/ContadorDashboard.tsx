@@ -566,6 +566,7 @@ export default function ContadorDashboard() {
   }
 
   async function addCompany(companyId: string) {
+    alert(accountantId);
     if (!accountantId) return;
     const { error } = await supabase
       .from("client_accountant_link")
