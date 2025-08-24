@@ -546,7 +546,7 @@ export default function ContadorDashboard() {
       .from("client_accountant_link")
       .select("id, created_at, is_primary, company:companies(id, razao_social, nome_fantasia, cnpj, regime)")
       .eq("accountant_id", aid)
-      .eq("is_primary", true)
+      .eq("is_primary", false)
       .order("created_at", { ascending: false });
     setLinked((data as any) || []);
   }
@@ -566,7 +566,6 @@ export default function ContadorDashboard() {
   }
 
   async function addCompany(companyId: string) {
-    alert(accountantId);
     if (!accountantId) return;
     const { error } = await supabase
       .from("client_accountant_link")
@@ -1352,7 +1351,7 @@ export default function ContadorDashboard() {
       )}
 
       {/* Detail modal */}
-      {/* {detail && (
+      {detail && (
         <div style={{ position:"fixed", inset:0, background:"rgba(0,0,0,0.6)", display:"grid", placeItems:"center", zIndex:50 }}>
           <div className="rounded-2xl border border-white/20 bg-white/10 backdrop-blur" style={{ width:520, maxWidth:"90vw", padding:16 }}>
             <div className="flex items-center justify-between mb-2">
@@ -1372,7 +1371,7 @@ export default function ContadorDashboard() {
             </div>
           </div>
         </div>
-      )} */}
+      )}
     </PlainLayout>
   );
 }
